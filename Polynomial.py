@@ -33,11 +33,14 @@
 	            return not self * other
 
 	def __mul__(self, other):
-		res_coeffs = (len(self.coeffs) + len(other.coeffs) - 1) * [0]
-		for i in range(0, len(self.coeffs)):
-			for j in range(0, len(other.coeffs)):
-				res_coeffs[i+j] += self.coeffs[i] * other.coeffs[j]
-		return Polynomial(res_coeffs)
+         if isinstance(other, Polynomial):
+		   res_coeffs = (len(self.coeffs) + len(other.coeffs) - 1) * [0]
+		   for i in range(0, len(self.coeffs)):
+			   for j in range(0, len(other.coeffs)):
+				   res_coeffs[i+j] += self.coeffs[i] * other.coeffs[j]
+         else:
+            res_coeffs = [coef*other for coef in self.coeffs]
+         return Polynomial(res_coeffs)
 
 	def __eq__(self, other):
 		if len(self.coeffs) != len(other.coeffs):

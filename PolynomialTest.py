@@ -11,8 +11,14 @@ class PolynomialTest(unittest.TestCase):
 	def test_str_any_positive_numbers_poly(self):
 		self.assertEqual(str(Polynomial([4,3,2,1])), '4x3+3x2+2x+1')
         
-	def test_add_zero(self):
+	def test_add_zero(self): 
 		self.assertEqual(Polynomial([-4,3,-2,1]), Polynomial([-4,3,-2,1]) + Polynomial([0]))
+
+        def test_add_const(self): 
+	    self.assertEqual(Polynomial([-4,3,-2,3]), Polynomial([-4,3,-2,1]) + 2)
+
+        def test_mult_const(self): 
+	    self.assertEqual(Polynomial([-4,3,-2,1]), Polynomial([-4,3,-2,1]) * 1)
 
 	def test_add_number(self):
 		self.assertEqual(Polynomial([4,3,2,2]), Polynomial([4,3,2,1]) + Polynomial([1]))
